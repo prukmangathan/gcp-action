@@ -5,7 +5,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("model-hexagon-351804-6b3b6f158f1e.json")
+  #credentials = file("model-hexagon-351804-6b3b6f158f1e.json")
   region      = "us-central1"
   project     = "model-hexagon-351804"
 }

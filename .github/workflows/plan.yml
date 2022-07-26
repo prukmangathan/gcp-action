@@ -9,6 +9,9 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: "model-hexagon-351804-6b3b6f158f1e.json"
+    
 
     steps:
       - name: checkout
