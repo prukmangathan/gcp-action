@@ -21,7 +21,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform init -backend-config="bucket=us-terraform-state-file-bucket-7482" -backend-config="prefix=account/dev"
 
       - name: Terraform Plan
         id: plan
