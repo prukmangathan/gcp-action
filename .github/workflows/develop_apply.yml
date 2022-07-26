@@ -12,7 +12,7 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:
-      GOOGLE_APPLICATION_CREDENTIALS: "model-hexagon-351804-6b3b6f158f1e.json"
+      GOOGLE_APPLICATION_CREDENTIALS: {{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
     steps:
       - name: checkout
