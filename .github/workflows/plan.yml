@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: action/checkout@v2
+        uses: action/checkout@master
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
