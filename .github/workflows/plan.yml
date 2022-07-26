@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: checkout
         uses: action/checkout@v2
+        with:
+          repository: prukmangathan/gcp-action
+          token: ${{ secrets.PAT }}
+          ref: master
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
