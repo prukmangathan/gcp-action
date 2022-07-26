@@ -1,21 +1,21 @@
-name: "Plan"
+name: "Dev_Account_Plan"
 
 on:
   push:
     branches:
-      - ^feature*
+      - 'feature/*'
 
 jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: "model-hexagon-351804-6b3b6f158f1e.json"
+    
 
     steps:
       - name: checkout
-        uses: action/checkout@gcp-action
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: actions/checkout@v2
 
       - name: Terraform Init
         id: init
@@ -24,4 +24,4 @@ jobs:
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'push'
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var-file="develop.auto.tfvars"
