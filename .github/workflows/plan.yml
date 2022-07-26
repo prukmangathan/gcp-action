@@ -3,7 +3,7 @@ name: "Plan"
 on:
   push:
     branches:
-      - ^feature*
+      - 'feature/*'
 
 jobs:
   terraform:
