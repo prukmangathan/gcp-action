@@ -3,7 +3,7 @@ name: "Plan"
 on:
   push:
     branches:
-      - ^feature*
+      - 'feature/*'
 
 jobs:
   terraform:
@@ -24,4 +24,4 @@ jobs:
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'push'
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var-file="develop.auto.tfvars"

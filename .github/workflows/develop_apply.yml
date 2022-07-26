@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'push'
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var-file="develop.auto.tfvars"
         continue-on-error: true
 
       - name: Terraform plan status
@@ -36,7 +36,7 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        run: terraform apply --auto-approve
-
-      - name: Terraform Destroy
-        run: terraform destroy --auto-approve
+        run: terraform apply -var-file="develop.auto.tfvars" --auto-approve
+        
+      #- name: Terraform Destroy
+      #  run: terraform destroy -var-file="develop.auto.tfvars" --auto-approve
