@@ -3,8 +3,6 @@ name: "QA_Account_Plan_Apply"
 on:
   push:
     branches:
-      - main
-      - develop
       - qa
 
 jobs:
