@@ -1,0 +1,40 @@
+name: "QA_Account_Plan_Apply"
+
+on:
+  push:
+    branches:
+      - qa
+
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: "model-hexagon-351804-6b3b6f158f1e.json"
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        id: init
+        run: terraform init -backend-config="bucket=us-terraform-state-file-bucket-7482" -backend-config="prefix=account/qa"
+
+      - name: Terraform Plan
+        id: plan
+        if: github.event_name == 'push'
+        run: terraform plan -no-color -var-file="qa.auto.tfvars"
+        continue-on-error: true
+
+      - name: Terraform plan status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+
+      - name: Terraform Apply
+        run: terraform apply -var-file="qa.auto.tfvars" --auto-approve 
+        
+      - name: Terraform Destroy
+        run: terraform destroy -var-file="qa.auto.tfvars" --auto-approve
