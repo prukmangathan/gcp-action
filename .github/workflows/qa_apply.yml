@@ -1,4 +1,4 @@
-name: "Apply"
+name: "QA_Account_Plan_Apply"
 
 on:
   push:
@@ -38,5 +38,5 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -var-file="qa.auto.tfvars" --auto-approve 
         
-      #- name: Terraform Destroy
-      #  run: terraform destroy -var-file="qa.auto.tfvars" --auto-approve
+      - name: Terraform Destroy
+        run: terraform destroy -var-file="qa.auto.tfvars" --auto-approve

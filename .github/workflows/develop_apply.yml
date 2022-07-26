@@ -1,4 +1,4 @@
-name: "Apply"
+name: "Dev_Account_Plan_Apply"
 
 on:
   push:
@@ -38,5 +38,5 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -var-file="develop.auto.tfvars" --auto-approve
         
-      #- name: Terraform Destroy
-      #  run: terraform destroy -var-file="develop.auto.tfvars" --auto-approve
+      - name: Terraform Destroy
+        run: terraform destroy -var-file="develop.auto.tfvars" --auto-approve

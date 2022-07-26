@@ -1,4 +1,4 @@
-name: "Plan"
+name: "Dev_Account_Plan"
 
 on:
   push:
