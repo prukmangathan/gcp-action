@@ -1,20 +1,20 @@
-name: "Apply"
+name: "Main_Account_Plan_Apply"
 
 on:
   push:
     branches:
       - main
-      - develop
-      - qa
 
 jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: "model-hexagon-351804-6b3b6f158f1e.json"
 
     steps:
       - name: checkout
-        uses: action/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -26,7 +26,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'push'
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var-file="main.auto.tfvars"
         continue-on-error: true
 
       - name: Terraform plan status
@@ -34,4 +34,7 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        run: terraform apply --auto-approve
+        run: terraform apply -var-file="main.auto.tfvars" --auto-approve
+        
+      - name: Terraform Destroy
+        run: terraform destroy -var-file="main.auto.tfvars" --auto-approve
