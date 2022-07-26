@@ -14,9 +14,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: action/checkout@v2
-        with:
-          token: ${{ secrets.master }}
+        uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
