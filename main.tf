@@ -1,7 +1,5 @@
 terraform {
-  backend "gcs" {
-    bucket = "us-terraform-state-file-bucket-7482"
-  }
+  backend "gcs" {}
 }
 
 provider "google" {
