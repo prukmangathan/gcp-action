@@ -24,7 +24,7 @@ jobs:
           workload_identity_provider: 'projects/316933479822/locations/global/workloadIdentityPools/github-actions/providers/github'
           service_account: 'iaac-sa@model-hexagon-351804.iam.gserviceaccount.com'
 
-      - id: 'list buckets contents'
+      - id: 'listbuckets'
         run: |-
           curl https://storage.googleapis.com/storage/v1/b/us-terraform-state-file-bucket-7482/o \
           --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
