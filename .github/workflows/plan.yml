@@ -20,9 +20,10 @@ jobs:
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0'
         with:
+          token_format: 'access_token'
           workload_identity_provider: 'projects/316933479822/locations/global/workloadIdentityPools/github-actions/providers/github'
           service_account: 'iaac-sa@model-hexagon-351804.iam.gserviceaccount.com'
-          
+
       - name: Terraform Init
         id: init
         run: terraform init -backend-config="bucket=us-terraform-state-file-bucket-7482" -backend-config="prefix=account/dev"
