@@ -23,12 +23,12 @@ jobs:
         with:
           workload_identity_provider: 'projects/316933479822/locations/global/workloadIdentityPools/github-actions/providers/github'
           service_account: 'iaac-sa@model-hexagon-351804.iam.gserviceaccount.com'
-          token_format: 'id_token'
+          token_format: 'access_token'
 
       - id: 'listbuckets'
         run: |-
           curl https://storage.googleapis.com/storage/v1/b/us-terraform-state-file-bucket-7482/o \
-          --header "Authorization: Bearer ${{ steps.auth.outputs.id_token }}"
+          --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
 
       - name: Terraform Init
         id: init
