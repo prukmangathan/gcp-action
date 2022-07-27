@@ -23,6 +23,7 @@ jobs:
         with:
           workload_identity_provider: 'projects/316933479822/locations/global/workloadIdentityPools/github-actions/providers/github'
           service_account: 'iaac-sa@model-hexagon-351804.iam.gserviceaccount.com'
+          token_format: 'access_token'
 
       - id: 'listbuckets'
         run: |-
@@ -32,6 +33,9 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init -backend-config="bucket=us-terraform-state-file-bucket-7482" -backend-config="prefix=account/dev"
+        with:
+          username: 'oauth2accesstoken'
+          password: '${{ steps.auth.outputs.access_token }}'
 
       - name: Terraform Plan
         id: plan
