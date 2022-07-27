@@ -9,6 +9,7 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
+    environment: workload_identity_provider
     permissions:
       id-token: write
       contents: read
