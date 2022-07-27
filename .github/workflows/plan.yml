@@ -21,14 +21,9 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0'
         with:
-          workload_identity_provider: 'projects/316933479822/locations/global/workloadIdentityPools/github-actions/providers/github'
-          service_account: 'iaac-sa@model-hexagon-351804.iam.gserviceaccount.com'
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SA_EMAIL }}
           token_format: 'access_token'
-
-      - id: 'listbuckets'
-        run: |-
-          curl https://storage.googleapis.com/storage/v1/b/us-terraform-state-file-bucket-7482/o \
-          --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
 
       - name: Terraform Init
         id: init
