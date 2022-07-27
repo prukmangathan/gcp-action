@@ -9,11 +9,14 @@ jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
-    env:
-      GOOGLE_APPLICATION_CREDENTIALS: "model-hexagon-351804-6b3b6f158f1e.json"
-    
 
     steps:
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.4.0'
+        with:
+          workload_identity_provider: 'projects/316933479822/locations/global/workloadIdentityPools/github-actions/providers/github'
+          service_account: 'iaac-sa@model-hexagon-351804.iam.gserviceaccount.com'
+
       - name: checkout
         uses: actions/checkout@v2
 
