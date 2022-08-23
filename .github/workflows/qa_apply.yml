@@ -1,9 +1,16 @@
 name: "QA_Account_Plan_Apply"
 
 on:
+
+on:
   push:
     branches:
       - qa
+  workflow_dispatch:
+    inputs:
+        version:
+          description: 'The version to deploy'
+          required: true
 
 jobs:
   terraform:
