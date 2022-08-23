@@ -1,14 +1,9 @@
 name: "Dev_Account_Plan"
 
 on:
-  push:
+  workflow_dispatch:
     branches:
       - 'feature/*'
-  workflow_dispatch:
-    inputs:
-        version:
-          description: 'The version to deploy'
-          required: true
 
 jobs:
   terraform:
