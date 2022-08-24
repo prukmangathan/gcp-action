@@ -29,12 +29,12 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init -backend-config="bucket=us-terraform-state-file-bucket-7482" -backend-config="prefix=account/dev"
-
-      - name: Sleep for 30 seconds
-        run: sleep 30s
-        shell: bash
-  
+ 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'push'
         run: terraform plan -no-color -var-file="develop.auto.tfvars"
+
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
