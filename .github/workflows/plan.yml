@@ -1,7 +1,7 @@
 name: "Dev_Account_Plan"
 
 on:
-  workflow_dispatch:
+  push:
     branches:
       - 'feature/*'
 
@@ -34,3 +34,4 @@ jobs:
         id: plan
         if: github.event_name == 'push'
         run: terraform plan -no-color -var-file="develop.auto.tfvars"
+        delay_after: 10
