@@ -26,7 +26,3 @@ jobs:
         run: terraform plan -no-color -var-file="develop.auto.tfvars"
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-
-      - name: Sleep for 30 seconds
-        run: sleep 30s
-        shell: bash
