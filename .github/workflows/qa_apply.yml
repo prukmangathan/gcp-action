@@ -1,8 +1,6 @@
 name: "QA_Account_Plan_Apply"
 
 on:
-
-on:
   push:
     branches:
       - qa
